@@ -1,0 +1,295 @@
+<html>
+
+<head>
+    <meta charset = "utf-8" />
+    <title> Calculadora Simples </title>
+
+    <style>
+        body{
+         border: 1.5px solid black;
+         border-radius: 8px;
+         background: white;
+         background-clip: border-box;
+        }
+        h1{
+            text-align: center;
+            margin-top: 100px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        p{
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+        .instrucao{
+            border: 1.5px solid blue;
+            border-radius: 10px;
+            background-color: rgb(161, 250, 250);
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            margin: 100px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/javascript">
+        MathJax.Hub.Config({
+            HTML: ["input/TeX","output/HTML-CSS"],
+            TeX: { extensions: ["AMSmath.js","AMSsymbols.js"],
+                equationNumbers: { autoNumber: "AMS" } },
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: false },
+            "HTML-CSS": { scale: 100, showMathMenu: false, minScaleAdjust: 100}
+        }); /* estou incluindo o Latex aqui */
+    </script>
+    <script type = "text/javascript">
+        function f(){
+            alert ("Bem vindo! Esta é uma calculadora simples!");
+        }
+        function soma(){
+            let x = document.getElementById("x");
+            let y = document.getElementById("y");
+            let resultado = document.getElementById("resultado");
+
+            let vx = parseInt(x.value);
+            let vy = parseInt(y.value);
+
+            if (isNaN(vx) || isNaN(vy))
+                alert("Entre com dois números!!");
+            else
+            resultado.textContent = vx + vy;
+        }
+
+        function subtração(){
+            let x = document.getElementById("x");
+            let y = document.getElementById("y");
+            let resultado = document.getElementById("resultado");
+
+            let vx = parseInt(x.value);
+            let vy = parseInt(y.value);
+
+            if (isNaN(vx) || isNaN(vy))
+                alert("Entre com dois números!!");
+            else
+                resultado.textContent = vx - vy;
+        }
+
+        function multiplicacao(){
+            let x = document.getElementById("x");
+            let y = document.getElementById("y");
+            let resultado = document.getElementById("resultado");
+
+            let vx = parseInt(x.value);
+            let vy = parseInt(y.value);
+
+            if (isNaN(vx) || isNaN(vy))
+                alert("Entre com dois números!!");
+            else
+                resultado.textContent = vx * vy;
+        }
+
+        function divisao(){
+            let x = document.getElementById("x");
+            let y = document.getElementById("y");
+            let resultado = document.getElementById("resultado");
+
+            let vx = parseInt(x.value);
+            let vy = parseInt(y.value);
+            let vr = 1;
+
+            if (isNaN(vx) || isNaN(vy))
+                alert("Entre com dois números!!");
+            else{
+                if ((vy == 0) && (vx == 0))
+                    alert("Operação indeterminada!!");
+                if ((vy == 0) && (vx != 0))
+                    alert("Operação impossível!!");
+                if ((vy != 0) && (vx == 0)){
+                    vr = 0;
+                    resultado.textContent = vr;
+                }
+                if ((vy != 0) && (vx != 0)){
+                    vr = vx / vy;
+                    resultado.textContent = vr;
+                }
+            }
+        }
+
+        function modulo(){
+            let x = document.getElementById("x");
+            let y = document.getElementById("y");
+            let resultado = document.getElementById("resultado");
+
+            let vx = parseInt(x.value);
+            let vy = parseInt(y.value);
+
+            if (isNaN(vx) || isNaN(vy))
+                alert("Entre com dois números!!");
+            else{
+                if ((vx == 0) && (vy == 0))
+                    alert("Operação indeterminada!!");
+                if ((vx != 0) && (vy == 0))
+                    alert("Operação impossível!!");
+                if ((vx == 0) && (vy != 0))
+                    resultado.textContent = 0;
+                if ((vx != 0) && (vy != 0)){
+                    let vr = vx % vy;
+                    resultado.textContent = vr;
+                }
+            }
+        }
+
+        function porcentagem(){
+            let x = document.getElementById("x");
+            let y = document.getElementById("y");
+            let resultado = document.getElementById("resultado");
+
+            let vx = parseInt(x.value);
+            let vy = parseInt(y.value);
+            if (isNaN(vx) || isNaN(vy))
+                alert("Entre com dois números!!");
+            else
+                resultado.textContent = (vx * vy)/100;
+        }
+
+        function potenciacao(){
+            let x = document.getElementById("x");
+            let y = document.getElementById("y");
+            let resultado = document.getElementById("resultado");
+
+            let vx = parseInt(x.value);
+            let vy = parseInt(y.value);
+            let vr;
+
+            if (isNaN(vx) || isNaN(vy))
+                alert("Entre com dois números!!");
+            else{
+                if ((vx == 0) && (vy == 0)){
+                    alert("Operação indeterminada!!");
+                }
+                else{
+                    vr = vx ** vy;
+                    resultado.textContent = vr;
+                }
+            }
+        }
+    </script>
+
+</head>
+
+<body onload="f()">
+
+    <h1> Calculadora Simples </h1>
+
+    <p>
+        a: <input type="text" id="x">
+    </p>
+    <p>
+        b: <input type="text" id="y">
+    </p>
+    <p>
+        <button onclick="soma()">
+            SOMA
+        </button>
+
+        <button onclick = "subtração()">
+            SUBTRAÇÃO
+        </button>
+
+        <button onclick = "multiplicacao()">
+            MULTIPLICAÇÃO
+        </button>
+
+        <button onclick = "divisao()">
+            DIVISÃO
+        </button>
+        
+        <button onclick = "modulo()">
+            MODULO
+        </button>
+
+        <button onclick = "porcentagem()">
+            PORCENTAGEM
+        </button>
+
+        <button onclick = "potenciacao()">
+            POTENCIAÇÃO
+        </button>
+    </p>
+    <p>
+
+        Resultado: 
+        <span id="resultado">
+            ...
+        </span>
+    </p>
+
+    <div class = "instrucao">
+        <p>
+            Instruções:
+        </p>
+
+        <p style = "text-align: justify">
+
+            Essa é uma simples calculadora que computa um dos seguintes operadores abaixo para dois números inteiros (caso um dos números entrados seja um número não inteiro a página sempre responde zero, para qualquer operação escolhida. Caso haja algum campo vazio, a página retorna erro):
+            <ul>
+                <li> <u> Soma/Adição </u>: Entre com dois números <cody> $a \text{ e } b$ </cody> e a calculadora retorna <cody> $a + b$ </cody>.</li>
+
+                <br>
+
+                <b> Exemplo.</b> <cody> $a = 2, b = 3 \Longrightarrow a + b = 5$</cody>.
+                <li> <u> Subtração/Diferença </u>: Entre com dois números <cody> $a \text{ e } b$ </cody> e a calculadora retorna <cody> $a - b$ </cody>.</li>
+
+                <br>
+
+                <b> Exemplo.</b> <cody> $a = 9, b = 5 \Longrightarrow a - b = 4$</cody>.
+                <li> <u> Multiplicação/Produto </u>: Entre com dois números <cody> $a \text{ e } b$ </cody> e a calculadora retorna <cody> $a \times b$ </cody>.</li>
+
+                <br>
+
+                <b> Exemplo.</b> <cody> $a = 7, b = 6 \Longrightarrow a \times b = 42$</cody>.
+                <li> <u> Divisão/Razão </u>: Entre com dois números <cody> $a \text{ e } b$ </cody> e a calculadora retorna <cody> $a \div b$ </cody>.</li>
+                
+                <br>
+
+                <b> Exemplo.</b> <cody> $a = 8, b = 4 \Longrightarrow a \div b = 2$</cody>.
+                
+                <br>
+
+                <b> Observação.</b> Caso seja entrado <cody> $a = b = 0 \Longrightarrow 0 \div 0$</cody>, a página retornará uma mensagem de erro (indeterminação). Em outro caso, se <cody> $a \neq b = 0 \Longrightarrow a \div 0$</cody>, a página retorna erro (conta impossível).
+
+                <li> <u> Resto/Resíduo/Módulo </u>: Entre com dois números <cody> $a \text{ e } b$ </cody> e a calculadora retorna <cody> $a \% b$ </cody> (o resto da divisão de a por b). </li>
+
+                <br>
+
+                <b> Exemplo.</b> <cody> $a = 10, b = 3 \Longrightarrow a \% b = 1$</cody>.
+                <br>
+
+                <b> Observação.</b> Caso seja entrado <cody> $a = b = 0 \Longrightarrow 0 \% 0$</cody>, a página retornará uma mensagem de erro (indeterminação). Em outro caso, se <cody> $a \neq b = 0 \Longrightarrow a \% 0$</cody>, a página retorna erro (conta impossível).
+
+                <li> <u> Porcentagem </u>: Entre com dois números <cody> $a \text{ e } b$ </cody> e a calculadora retorna <cody>$a \% \text{ de } b$</cody>.</li>
+                
+                <br>
+
+                <b> Exemplo.</b> <cody> $a = 20, b = 50 \Longrightarrow a\% \text{ de } b = 20\% \text{ de } 50 = 10$</cody>.
+                <li> <u> Potenciação/Exponenciação </u>: Entre com dois números <cody> $a \text{ e } b$ </cody> e a calculadora retorna <cody> $a^b$ </cody>. </li>
+
+                <br>
+
+                <b> Exemplo.</b> <cody> $a = 16, b = 3 \Longrightarrow a^b = 16^3 = 4036$</cody>.
+                <br>
+
+                <b> Observação.</b> Caso seja entrado <cody> $a = b = 0 \Longrightarrow 0^0$</cody>, a página retornará uma mensagem de erro (indeterminação).
+            </ul>
+        </p>
+    </div>
+
+    <p> Trabalho feito por: Luis Henrique Brito (3BINFO 2021) </p>
+
+
+</body> 
+
+</html>
