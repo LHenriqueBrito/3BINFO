@@ -1,0 +1,422 @@
+<html>
+
+<head>
+    <meta charset = "utf-8" />
+    <title> Uma Breve Introdução a Teoria dos Grafos</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/javascript">
+        MathJax.Hub.Config({
+            HTML: ["input/TeX","output/HTML-CSS"],
+            TeX: { extensions: ["AMSmath.js","AMSsymbols.js"],
+                   equationNumbers: { autoNumber: "AMS" } },
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                       displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                       processEscapes: false },
+            "HTML-CSS": { scale: 100, showMathMenu: false, minScaleAdjust: 100}
+        }); /* estou incluindo o Latex aqui */
+    </script>
+    <style>
+        body{
+         margin: 0;
+         counter-reset: section;
+         background-image: url('wallpaper.jpg'); /* imagem de fundo */
+         background-size: cover; /* imagem cobre todo o fundo */
+         background-attachment: fixed; /* imagem não distorce com scroll */
+         font-family: Arial, Helvetica, sans-serif;
+         margin: 10px 150px;
+         padding: 10px 5px;
+         padding-top: 1px;
+        }
+        #prop{
+         border: 1.5px solid black;
+         border-radius: 8px;
+         background: white;
+         background-clip: border-box;
+        }
+        h1{
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 50px;
+            margin: 10px;
+            padding: 5px;
+        }
+        h2{
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 25px;
+            margin: 30px 
+        }
+        h2::before{
+            counter-increment: section;
+            content: "Seção " counter(section) ". ";
+        } /* mérito da W3School */
+        p,ol,ul{
+            text-align: justify;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            color:black;
+            margin: 30px;
+        }
+        .center{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+        table,th,td,tr{
+            text-align: center;
+            width: 50%;
+            background-color:white;
+            border: 1px solid black;
+            border-collapse:collapse;
+            padding:5px;
+            text-align:center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+    <div id = "prop">
+
+    <h1> Uma Breve Introdução a Teoria dos Grafos </h1>
+
+    <h2> Definições iniciais </h2> 
+
+    <p>
+        <b> Definição. </b> Os grafos são pares que reunem dois conjuntos finitos: os vértices, representados pela letra V e o conjunto das arestas, representado por E.
+    </p> 
+
+    <p> 
+        Uma aresta será definida, nesse website, por um par não ordenado formado por dois vértices obrigatoriamente diferentes. Em outras palavras: <cody> $e = \{ u, v \} $</cody>, onde <cody> $u, v \in V$</cody>. Nesse caso, os vértices <cody> $ u \text{ e } v$</cody> são ditos "vértices adjacentes", ao passo que a aresta "e" é dita "incidente" a ambos os vértices.
+    </p>
+
+    <p> 
+        O grafo é dito "vazio" quando o conjunto das arestas corresponder ao conjunto vazio. Nesse caso, os vértices do grafo são chamados "isolados". Quando o conjunto dos vértices é unitário e o conjunto das arestas é vazio, diz-se que o grafo é "trivial".
+    </p>
+
+    <p> 
+        Durante todo o texto, será usada a notação G(V,E) para representar o grafo de vértices V e arestas E. Quando necessário, tomaremos <cody> $|V| = n \text{ e } |E| = m$ </cody> para representar o número de vértices e arestas, respectivamente. Todos os grafos aqui trabalhados serão não direcionados e sem loops (arestas que ligam o mesmo vértice).
+    </p>
+
+    <p> 
+        Para grafos pequenos (número de vértices e arestas pequenos), é possível ilustrá-lo por um desenho, considerando, sistematicamente: 
+    </p>
+
+    <p> 
+        <ul>
+             <li> os vértices como um conjunto de pontos em um plano (todos coplanares) </li> 
+             <li> as arestas como segmentos de reta em que as extermidades são os vértices incididos</li>
+        </ul> 
+    </p>
+
+    <p> 
+        <b> Exemplo.</b> A figura abaixo ilustra o grafo de vértices <cody> $V = \{ a,b,c,d \} $</cody> e arestas <cody> $E = \{ \{a,b\} ; \{a, c\} ; \{a, d\} ; \{b, c\}$</cody>. 
+    </p>
+
+    <figure>
+        <img src = "figura1.jpg" width = "500" class = "center">
+        <p style = "text-align: center"> Figura 1: Exemplo de uma ilustração possível para o grafo definido acima</p>
+    </figure>
+
+    <p> 
+        O número de arestas incidentes a um vértice é chamado de "grau do vértice". Será notado por <cody> $d(v_i), v_i \in V$ </cody>.
+    </p>
+    
+    <p> <b> Teorema.</b> Para todo grafo G de <cody> $n \text{ vértices e } m \text{ arestas, }$ </cody> vale que: 
+        <cody> $$ \displaystyle \sum_{i = 1}^n d(v_i) = 2 \cdot m $$</cody>
+    </p>
+
+    <p>
+        A demonstração desse teorema é simples: uma aresta liga dois vértices necessariamente distintos. Então se somarmos os graus de todos os vértices de um grafo, contaremos uma mesma aresta duas vezes. Logo, segue o resultado acima.
+    </p>
+
+    <p>
+        <b> Corolário. </b> Para todo grafo G, o número de vértices de grau ímpar é par.
+    </p>
+
+    <p>
+        A consequência acima decorre do teorema, pois como a soma dos graus dos vértices é um número par, a ocorrência de graus ímpares deve ser par também.
+    </p>
+
+    <hr>
+
+    <h2> Tipos especiais de grafos </h2>
+
+    <p>
+        <b> Definição.</b> A sequência de vértices de um grafo G <cody> $(v_i)_n$ </cody>, <cody> $v_i \in V(G) \text{ e } |V(G)| = n$ </cody> é dita uma:
+        <ul>
+            <li> <u> cadeia de <cody> $v_i \text{ até } v_j$</cody></u> quando <cody> $\{v_i, v_j\} \in E(G)$ </cody> para <cody> $1 \leq i \leq j - 1$</cody>. Se <cody> $v_i = v_j$</cody>, então a cadeia é dita <u> fechada</u>. Caso contrário, a cadeia é <u> aberta</u>.</li>
+            <li> <u> caminho</u> quando a sequência é uma cadeia de vértices distintos (<i> Notação.</i>> <cody> $P_n$</cody>) </li>
+            <li> <u> ciclo</u> quando a sequência é fechada (<i> Notação.</i>>: <cody> $C_n$ </cody>)</li>
+        </ul>
+    </p>
+
+    <p>
+        As figuras abaixos representam um grafo <cody> $P_5 \text{ e } C_8$</cody>:
+
+        <figure>
+            <img src = "figura2.png" class = "center">
+            <p style = "text-align: center"> Figura 2: Este é um <cody> $P_5$</cody>.</p>
+        </figure>
+
+        <figure>
+            <img src = "figura3.png" class = "center">
+            <p style = "text-align: center">Figura 3: Este é um <cody> $C_8$</cody>. Note que cada um dos oito vértices possuem grau dois. </p> 
+        </figure>
+    </p>
+
+    <p>
+        A diferença entre o caminho e o ciclo é que existe, no caminho, um vértice de grau um. Essa diferença ocorrerá para todos os grafos caminhos e ciclos de n vértices.
+    </p>
+
+    <p>
+        <b> Definição.</b> Um grafo é dito conexo quando, para todo par de vértices do grafo, existe algum caminho que os conectem. Caso contrário, o grafo é dito "desconexo".
+    </p>
+
+    <p>
+       A figura abaixo pode representar dois grafos em um mesmo plano (possível) ou um grafo propriamente desconexo.
+    </p>
+
+    <figure>
+        <img src = "figura4.png" class = "center">
+        <p style = "text-align: center"> Figura 4: São dois grafos em um mesmo plano ou é um grafo desconexo?</p>
+    </figure>
+
+    <p>
+        De fato, se considerarmos que a figura representa apenas um grafo, então é desconexo pois existem alguns vértices que não podem ser conectados com outros através de caminhos (é impossível passar pelo vértice f partindo de a e percorrendo os vértices arestas por arestas).
+    </p>
+
+    <p>
+        Nesse caso, esse "quadrado" e "triângulo" que compõe a figura são ditos "componentes conexas" do grafo. As componentes conexas podem ser outros grafos necessariamente conexos ou vértices isolados.
+    </p>
+
+    <p>
+        <b> Definição.</b> O grafo <cody> $G'(V',E')$</cody> é um subgrafo de <cody>$G(V,E)$</cody> quando:
+
+        <ul>
+            <li> <cody> $V' \subset V$ </cody></li>
+
+            <li> <cody> $E' \subset E$</cody></li>
+        </ul>
+    </p>
+
+    <p>
+        Se dois vértices de G' são adjacentes se, e somente se, esses mesmos vértices são adjacentes em G, então G' é dito "subgrafo induzido".
+    </p>
+
+    <p>
+        <b> Definição.</b> Um grafo é completo quando quaisquer pares de vértices do grafo são adjacentes, isto é: existe uma aresta que conecta dois vértices aleatórios do grafo.
+    </p>
+
+    <p>
+        <i> Notação.</i> <cody> $K_n$</cody>, onde <cody> $n$</cody> é o número de vértices do grafo.
+    </p>
+
+    <figure>
+        <img src = "figura5.png" class = "center">
+        <p style = "text-align: center"> Figura 5: Este é um exemplo de <cody> $K_4$</cody>.</p>
+    </figure>
+
+    <p> <b> Teorema.</b> Para todo grafo <cody> $K_n$</cody>, o número de arestas do grafo é: <cody> $|E(K_n)| = \dfrac{n \cdot (n - 1)}{2}$</cody>.</p>
+
+    <p>
+        <b> Demonstração.</b> Foi provado, anteriormente nesse texto, o teorema que afirma que <cody> $\displaystyle \sum_{i = 0}^n d(v_i) = 2|E(G)|, v_i \in V(G) \text{ e } |V(G)| = n$</cody>. Por definição, o <u>grau</u> dos vértices de <cody> $K_n$</cody> é <cody> $n - 1$</cody>, pois existe uma aresta que liga quaisquer pares de vértices aleatórios do grafo.    
+    </p>
+
+    <p>
+        Dado que o grafo possui n vértices, verifica-se então:
+
+        <cody>$$2|E(K_n)| = \displaystyle \sum_{i = 0}^n d(v_i) \Longrightarrow 2|E(K_n)| = n \cdot \overbrace{(n - 1)}^{d(v_i), \forall v_i \in V(K_n)} \Longrightarrow |E(G)| = \dfrac{n \cdot (n - 1)}{2}$$</cody> 
+    </p>
+
+    <p>
+        A tabela a seguir mostra o número de arestas e o grau do grafo completo quando o número de vértices varia.
+    </p>
+
+    <p>
+        <table>
+            <tr>
+                <td> <b> Número de vértices </b></th>
+                <td> <b> Número de arestas </b> </th>
+                <td> <b> Graus dos vértices</b> </th>
+            </tr>
+            <tr>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+            </tr>
+            <tr>
+                <td> 2 </td>
+                <td> 1 </td>
+                <td> 1 </td>
+            </tr>
+            <tr>
+                <td> 3 </td>
+                <td> 3 </td>
+                <td> 2 </td>
+            </tr>
+            <tr>
+                <td> 4 </td>
+                <td> 6 </td>
+                <td> 3 </td>
+            </tr>
+            <tr>
+                <td> 5 </td>
+                <td> 10 </td>
+                <td> 4 </td>
+            </tr>
+
+        </table>
+    </p>
+
+    <p>
+        Uma conclusão possível é que a sequência dos números de arestas é uma progressão aritmética de segunda ordem em que operador diferença varia com razão 1. Também é possível perceber esse resultado analisando a expressão demonstrada acima, que é um polinômio quadrático.
+    </p>
+
+    <p> <b> Observação.</b> O subgrafo completo é dito "clique" de k vértices. </p>
+
+    <p>
+        <b> Definição.</b> O grafo <cody> $\overline{G}$</cody> de n vértices tal que <cody>$G \cup \overline{G} = K_n$</cody> é chamado de "grafo complementar" de G.
+    </p>
+
+    <figure>
+        <img src = "figura6.png" class = "center">
+        <p style = "text-align: center;"> Figura 6: O grafo com as arestas desenhadas pontilhadas é o complementar do grafo com as arestas contínuas.</p>
+    </figure>
+
+    <p>
+        Observe que <cody> $|V(G)| = |V(\overline{G})| = n$</cody> e <cody> $E(G) \cup E(\overline{G}) = E(K_n)$</cody>. Essas afirmações decorrem da definição.
+    </p>
+
+    <p>
+        <b> Definição.</b> Um grafo é "k-regular" quando todos os seus vértices tem o mesmo grau k.
+    </p>
+
+    <p>
+        Assim como nos grafos completos (pode-se dizer que são grafos "(n-1)-regulares"), é possível determinar uma expressão que computa o número de arestas do grafo conhecendo a sua regularidade k e o número de vértices n.
+    </p>
+
+    <p>
+        <b> Teorema.</b> O número de arestas de um grafo G k-regular de n vértices é dado por: <cody> $|E(G)| = \dfrac{k \cdot n}{2}$</cody>.
+    </p>
+
+    <p>
+        O teorema acima não será provado pois sua demonstração é similar a prova feita para o teorema do número de arestas do grafo completo.
+    </p>
+
+    <p>
+        <b> Definição.</b> Um grafo G(V,E) é bipartido se existe uma partição <cody> $V_1,V_2 \subset V, V_1 \cap V_2 = \varnothing$</cody>. A condição para o particionamento do conjunto de vértices é: não existe nenhuma aresta que conecte dois vértices de <cody> $V_1 \text{ ou } V_2$</cody>.
+    </p>
+
+    <figure>
+        <img src = "figura7.png" class = "center">
+        <p style = "text-align: center;"> Figura 7: Um exemplo de grafo bipartido</p>
+    </figure>
+
+    <p> Se, para todo par de vértices em partições distintas, existe uma aresta que os conecte, então o grafo é dito "bipartido completo" (<i> Notação.</i> <cody> $K_{p,q}$</cody>, onde <cody> $p,q$</cody> indicam os números de vértices de cada partição</p>
+
+    <image>
+        <img src = "figura8.png" class = "center">
+        <p style = "text-align: center;"> <cody> Figura 8: Representação de um $K_{3,2}$</cody></p>
+    </image>
+
+    <p>
+        <b> Teorema.</b> Para todo grafo <cody> $K_{p,q}$</cody>, o número de arestas é <cody> $|E(K_{p,q})| = p \cdot q$</cody>.
+    </p>
+
+    <p>
+        <b> Demonstração. </b> Inicialmente queremos determinar uma expressão que retorne o número de arestas de <cody> $K_{p,q}$</cody> dependendo exclusivamente do número de vértices de cada partição.
+    </p>
+
+    <p>
+        Considere as seguintes decisões:
+
+        <ol>
+            <li> Escolha um vértice aleatório na primeira partição do grafo;</li>
+
+            <li> Tomado o primeiro vértice, escolha o segundo vértice na outra partição do grafo;</li>
+        </ol>
+    </p>
+
+    <p>
+        Ora, ambas as escolhas acima são independentes entre si, afinal a ordem das decisões não afeta na construção da aresta, dado que a aresta é um par <b>NÃO</b> ordenado.
+    </p>
+
+    <p>
+        Portanto, pelo princípio multiplicativo da contagem: <cody> $|E(K_{p,q})| = p \cdot q$</cody>, provando o teorema.
+    </p>
+
+    <p>
+        Há outros grafos especiais para serem estudados:
+    </p>
+
+    <ol>
+        <li>
+            Árvores e florestas;
+        </li>
+
+        <li>
+            Grafo linha;
+        </li>
+
+        <li>
+            Grafo de Moore;
+        </li>
+
+        <li>
+            Grafo de Petersen;
+        </li>
+
+        <li>
+            Grafos dirigidos;
+        </li>
+
+        <li>
+            Grafos k-partidos;
+        </li>
+
+        <li>
+            Grafos autocomplementares;
+        </li>
+
+        <li>
+            Ciclos eulerianos, semi-eulerianos, hamiltoneanos e semi-hamiltoneanos;
+        </li>
+
+        <li>
+            Grafos planares.
+        </li>
+    </ol>
+    <hr>
+
+    <h2> Referências bibliográficas </h2>
+
+    <ol>
+        <li>
+            <a href = "http://www.obmep.org.br/docs/apostila5.pdf"> Apostila 5 OBMEP: "Grafos - Uma Introdução" </a>
+        </li>
+
+        <li>
+            <a href = "http://mtm.ufsc.br/coloquiosul/notas_minicurso_6.pdf"> Teoria Espectral de Grafos - Uma Introdução</a>
+        </li>
+    </ol>
+    <hr>
+
+    <p>
+        Trabalho feito por: Luis Henrique Brito (3BINFO 2021) 
+    </p>
+
+    </div>
+
+</body>
+
+</html>
