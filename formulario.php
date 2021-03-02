@@ -1,5 +1,27 @@
 <h1> Mine Horta Vale Verde </h1>
 
+<?php
+
+if(isset($nome) == false){
+    $firma = "";
+    $data = "";
+    $num = "";
+    $endereco = "";
+    $complemento = "";
+    $bairro = "";
+    $cidade = "";
+    $estado = "";
+    $cep = "";
+    $cnpj = "";
+    $inscricao = "";
+    $telefone = "";
+    $celular = "";
+    $email = "";
+    $obs = "";
+}
+
+?>
+
 <form method = "post" action = "dados.php">
     <p> Firma: <input type = "text" name = "firma" size = "80" value = "<?=$firma?>"/></p>
     <p> Data: <input type = "text" name = "data" size = "80" value = "<?=$data?>"></p>
