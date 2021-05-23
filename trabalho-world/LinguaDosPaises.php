@@ -13,7 +13,7 @@
 EOT;
 ?>
 <h1>Língua dos países armazenados e suas porcentagens</h1>
-<table class="table table-striped table-sm table-bordered">
+<table class="table table-striped table-hover">
 	<thead>
 		<tr>
 		<th scope="col">Nome</th>
