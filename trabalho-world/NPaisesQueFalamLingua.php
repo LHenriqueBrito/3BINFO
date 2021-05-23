@@ -14,7 +14,7 @@
 EOT;
 ?>
 <h1>Número de países que falam certa língua</h1>
-<table class="table table-striped table-sm table-bordered">
+<table class="table table-striped table-hover">
 	<thead>
 		<tr>
 		<th scope="col">Língua</th>
