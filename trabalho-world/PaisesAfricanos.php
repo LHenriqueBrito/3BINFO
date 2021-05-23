@@ -14,7 +14,7 @@
 EOT; // desc -> ordenamento decrescente
 ?>
 <h1>Países do continente africano</h1>
-<table class="table table-striped table-sm table-bordered">
+<table class="table table-striped table-hover">
 	<thead>
 		<tr>
         <th scope = "col"> Nome </th>
